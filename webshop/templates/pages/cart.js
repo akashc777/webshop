@@ -139,14 +139,14 @@ $.extend(shopping_cart, {
 	},
 
 	place_order: function(btn) {
-		shopping_cart.freeze();
 
 		return frappe.call({
 			type: "POST",
 			method: "webshop.webshop.shopping_cart.cart.place_order",
+			freeze: true,
+			freeze_message: __('Placing Order...'),
 			btn: btn,
 			callback: function(r) {
-				shopping_cart.unfreeze();
 				if(r.exc) {
 					var msg = "";
 					if(r._server_messages) {
@@ -163,7 +163,6 @@ $.extend(shopping_cart, {
 				}
 			},
 			error: function(xhr, status, error) {
-				shopping_cart.unfreeze();
 				var msg = xhr.responseText ? JSON.parse(xhr.responseText).message : frappe._("Something went wrong!");
 				$("#cart-error")
 					.empty()
