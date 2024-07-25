@@ -100,7 +100,7 @@ def place_order():
 		frappe.defaults.set_user_default("company", quotation.company)
 
 	if not (quotation.shipping_address_name or quotation.customer_address):
-		frappe.throw(_("Set Shipping Address or Billing Address"))
+		frappe.throw(_("Set Billing Address"))
 
 	customer_group = cart_settings.default_customer_group
 

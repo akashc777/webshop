@@ -3,7 +3,7 @@
 {% if addresses | length == 1%}
 	{% set select_address = True %}
 {% endif %}
-
+<!-- 
 <div class="mb-3 frappe-card p-5" data-section="shipping-address">
 	<div class="d-flex">
 		<div class="col-6 address-header"><h6>{{ _("Shipping Address") }}</h6></div>
@@ -22,15 +22,15 @@
 	</div>
 	{% endif %}
 	{% endfor %}
-</div>
+</div> -->
 
 <!-- Billing Address -->
-<div class="checkbox ml-1 mb-2">
+<!-- <div class="checkbox ml-1 mb-2">
 	<label for="input_same_billing">
 		<input type="checkbox" class="product-filter" id="input_same_billing" checked style="width: 14px !important">
 		<span class="label-area font-md">{{ _('Billing Address is same as Shipping Address') }}</span>
 	</label>
-</div>
+</div> -->
 
 
 <div class="mb-3 frappe-card p-5" data-section="billing-address">
@@ -63,10 +63,10 @@ frappe.ready(() => {
 		$target.addClass('active');
 	});
 
-	$('#input_same_billing').change((e) => {
-		const $check = $(e.target);
-		toggle_billing_address_section(!$check.is(':checked'));
-	});
+	// $('#input_same_billing').change((e) => {
+	// 	const $check = $(e.target);
+	// 	toggle_billing_address_section(!$check.is(':checked'));
+	// });
 
 	$('.btn-new-address').click(() => {
 		const d = new frappe.ui.Dialog({
@@ -118,15 +118,15 @@ frappe.ready(() => {
 					fieldname: 'address_type',
 					fieldtype: 'Select',
 					options: [
-						'Billing',
-						'Shipping'
+						'Billing'
 					],
 					reqd: 1
 				},
 				{
 					label: __('Postal Code'),
 					fieldname: 'pincode',
-					fieldtype: 'Data'
+					fieldtype: 'Data',
+					reqd: 1
 				},
 				{
 					fieldname: "phone",
@@ -181,9 +181,9 @@ frappe.ready(() => {
 
 	setup_state();
 
-	function toggle_billing_address_section(flag) {
-		$('[data-section="billing-address"]').toggle(flag);
-	}
+	// function toggle_billing_address_section(flag) {
+	// 	$('[data-section="billing-address"]').toggle(flag);
+	// }
 });
 </script>
 
