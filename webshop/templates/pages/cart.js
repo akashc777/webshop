@@ -161,6 +161,14 @@ $.extend(shopping_cart, {
 					$(btn).hide();
 					window.location.href = '/orders/' + encodeURIComponent(r.message);
 				}
+			},
+			error: function(xhr, status, error) {
+				shopping_cart.unfreeze();
+				var msg = xhr.responseText ? JSON.parse(xhr.responseText).message : frappe._("Something went wrong!");
+				$("#cart-error")
+					.empty()
+					.html(msg)
+					.toggle(true);
 			}
 		});
 	},
