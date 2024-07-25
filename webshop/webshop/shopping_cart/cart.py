@@ -101,7 +101,6 @@ def place_order():
 
 	if not (quotation.shipping_address_name or quotation.customer_address):
 		frappe.throw(_("Set Billing Address"))
-		frappe.dom.unfreeze()
 
 	customer_group = cart_settings.default_customer_group
 
